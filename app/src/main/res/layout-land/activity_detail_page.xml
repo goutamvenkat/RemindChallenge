@@ -14,35 +14,37 @@
         android:scaleType="centerCrop"
         android:clickable="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="16dp"
+        android:layout_above="@+id/popularity_score"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/popularity_score" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Poster Title"
         android:id="@+id/poster_title"
-        android:layout_marginTop="26dp"
-        android:layout_below="@+id/pictureDetailPage"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/synopsis"
+        android:layout_toEndOf="@+id/pictureDetailPage" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Popularity Score"
         android:id="@+id/popularity_score"
-        android:layout_below="@+id/poster_title"
+        android:layout_above="@+id/synopsis"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="false" />
+        android:layout_marginBottom="38dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Synopsis"
         android:id="@+id/synopsis"
-        android:layout_below="@+id/popularity_score"
-        android:layout_marginBottom="51dp"
+        android:layout_marginBottom="37dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="67dp" />
 
 
 </RelativeLayout>
