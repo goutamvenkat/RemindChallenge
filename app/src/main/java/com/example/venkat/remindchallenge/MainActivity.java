@@ -1,6 +1,7 @@
 package com.example.venkat.remindchallenge;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -132,8 +133,6 @@ public class MainActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-//            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-//            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             GridView gridView = (GridView) rootView.findViewById(R.id.gridview);
             gridView.setAdapter(new GridAdapter(MainActivity.this.getApplicationContext(), this.sectionNumber));
             return rootView;
@@ -180,14 +179,32 @@ public class MainActivity extends AppCompatActivity {
             }
             image = (SquareImageView) v.getTag(R.id.picture);
             String filePath;
+            MovieDb movie = null;
+            TvSeries tvShow = null;
             if (isMovies) {
-                filePath = ((MovieDb) getItem(i)).getPosterPath();
+                movie = ((MovieDb) getItem(i));
+                filePath = movie.getPosterPath();
             } else {
-                filePath = ((TvSeries) getItem(i)).getPosterPath();
+                tvShow =  ((TvSeries) getItem(i));
+                filePath = tvShow.getPosterPath();
             }
+            final MovieDb fMovie = movie;
+            final TvSeries ftvShow = tvShow;
             String mainURL = getString(R.string.IMAGE_URL);
             String API_KEY = getString(R.string.API_KEY);
             Picasso.with(MainActivity.this.getApplicationContext()).load(mainURL + filePath + "?api_key" + API_KEY).into(image);
+
+            image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this, DetailPageActivity.class);
+                    if (isMovies)
+                        intent.putExtra(getString(R.string.object_info), fMovie);
+                    else
+                        intent.putExtra(getString(R.string.object_info), ftvShow);
+                    startActivity(intent);
+                }
+            });
             return v;
         }
     }
