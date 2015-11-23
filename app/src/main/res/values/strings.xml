@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RemindChallenge</string>
+    <string name="action_settings">Settings</string>
+    <!--<string name="section_format">Hello World from section: %1$d</string>-->
+    <string name="API_KEY">090227d55c23bf26b56c93d74a7b3f1a</string>
+    <string name="IMAGE_URL">http://image.tmdb.org/t/p/w300</string>
+
+</resources>
